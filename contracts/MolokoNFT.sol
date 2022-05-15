@@ -47,7 +47,7 @@ contract MolokoNFT is ERC721URIStorage, ReentrancyGuard {
         );
     }
 
-    // 2 изменить нфт uri (в случае дропа сервера с картинками)
+    // 2 изменить нфт uri (в случае дропа сервера с картинками) // или если надо дропнуть uri
     function updateTokenURI(uint256 tokenId, string memory newTokenURI) public onlyFounder {
         _setTokenURI(tokenId, newTokenURI);
     }
