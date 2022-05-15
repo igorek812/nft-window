@@ -19,7 +19,7 @@ const MainPage = () => {
             }
 
             setIsNftLoading(true);
-            const nftArray = await contractService.getAllNFT();
+            // const nftArray = await contractService.getAllNFT();
             setIsNftLoading(false);
             if (nftArray) {
                 setNftArray(nftArray)
