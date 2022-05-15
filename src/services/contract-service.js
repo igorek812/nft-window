@@ -53,45 +53,45 @@ const connectWallet = async () => {
     }
 }
 
-// const getAllNFT = async () => {
-//     try {
-//         const { ethereum } = window
-//
-//         if (!ethereum) {
-//             console.log("Ethereum object doesn't exist!")
-//             return;
-//         }
-//
-//         const provider = new ethers.providers.Web3Provider(ethereum)
-//         // const signer = provider.getSigner()
-//         const nftContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, provider)
-//
-//         const nfts = await nftContract.fetchItems();
-//         const nftCount = nfts.length;
-//
-//         let nftArray = [];
-//
-//         for (let i = 0; i < nftCount; i++) {
-//
-//             const base64TokenUri = nfts[i].tokenURI.replace("data:application/json;base64,", "");
-//             let tokenUri = atob(base64TokenUri);
-//             tokenUri = JSON.parse(tokenUri)
-//             tokenUri.price = ethers.utils.formatUnits(nfts[i].price, 'ether');
-//             tokenUri.owner = nfts[i].owner;
-//             tokenUri.tokenId = i;
-//
-//             nftArray.push(tokenUri)
-//         }
-//
-//         console.log('nftArray = ', nftArray)
-//
-//         return nftArray
-//
-//     } catch (error) {
-//         console.log(error)
-//         // setTxError(error.message)
-//     }
-// }
+const getAllNFT = async () => {
+    try {
+        const { ethereum } = window
+
+        if (!ethereum) {
+            console.log("Ethereum object doesn't exist!")
+            return;
+        }
+
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        // const signer = provider.getSigner()
+        const nftContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, provider)
+
+        const nfts = await nftContract.fetchItems();
+        const nftCount = nfts.length;
+
+        let nftArray = [];
+
+        for (let i = 0; i < nftCount; i++) {
+
+            const base64TokenUri = nfts[i].tokenURI.replace("data:application/json;base64,", "");
+            let tokenUri = atob(base64TokenUri);
+            tokenUri = JSON.parse(tokenUri)
+            tokenUri.price = ethers.utils.formatUnits(nfts[i].price, 'ether');
+            tokenUri.owner = nfts[i].owner;
+            tokenUri.tokenId = i;
+
+            nftArray.push(tokenUri)
+        }
+
+        console.log('nftArray = ', nftArray)
+
+        return nftArray
+
+    } catch (error) {
+        console.log(error)
+        // setTxError(error.message)
+    }
+}
 
 const changeNftUri = async (currentAccount, tokenId, newUri) => {
 
@@ -291,7 +291,7 @@ const buyItem = async (currentAccount, tokenId, price) => {
 export default {
     checkIfWalletIsConnected,
     connectWallet,
-    // getAllNFT,
+    getAllNFT,
     changeNftUri,
     transferNft,
     mintNft,
