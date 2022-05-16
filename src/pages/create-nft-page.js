@@ -57,7 +57,7 @@ const CreateNftPage = () => {
 
                     {isLoading
                         ? <h4>Loading...</h4>
-                        : <div></div>
+                        : <div/>
                     }
 
                 </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './../App.css';
-import NftCard from "./../components/nft-card/nft-card";
+import NftCard from "../components/nft-card";
 import contractService from './../services/contract-service';
 
 const MainPage = () => {

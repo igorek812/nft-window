@@ -1,5 +1,5 @@
 import {ethers} from "ethers";
-import myEpicNft from "../utils/MolokoNFT.json";
+import contractData from "../utils/MolokoNFT.json";
 
 // const CONTRACT_ADDRESS = "0xFAa333Ef7cCc28B418cb98F385101abaae175D73";
 // const CONTRACT_ADDRESS = "0x710dde1a33a13700faB57fdD2078393884a7E33E"; // with change uri
@@ -64,7 +64,7 @@ const getAllNFT = async () => {
 
         const provider = new ethers.providers.Web3Provider(ethereum)
         // const signer = provider.getSigner()
-        const nftContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, provider)
+        const nftContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, provider)
 
         const nfts = await nftContract.fetchItems();
         const nftCount = nfts.length;
@@ -113,7 +113,7 @@ const changeNftUri = async (currentAccount, tokenId, newUri) => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
 
-    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 
     const nftTxn = await connectedContract.updateTokenURI(tokenId, newUri);
 
@@ -147,7 +147,7 @@ const transferNft = async (currentAccount, tokenId, to) => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
 
-    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 
     const nftTxn = await connectedContract.transferFrom(currentAccount, to, tokenId);
 
@@ -177,7 +177,7 @@ const mintNft = async (currentAccount, tokenId) => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
 
-    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 
     const nftTxn = await connectedContract.resellToken(tokenId);
 
@@ -217,7 +217,7 @@ const createNft = async (currentAccount, newNftData) => {
             const provider = new ethers.providers.Web3Provider(ethereum);
             const signer = provider.getSigner();
 
-            const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+            const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 
             console.log("Going to pop wallet now to pay gas...")
             let nftTxn = await connectedContract.mint(`data:application/json;base64,${data}`, totalPrice);
@@ -255,7 +255,7 @@ const getOwnerNft = async (currentAccount, tokenId) => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
 
-    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 
     const nftOwner = await connectedContract.ownerOf(tokenId);
 
@@ -281,7 +281,7 @@ const buyItem = async (currentAccount, tokenId, price) => {
 
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
+    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 
     await connectedContract.buyItem(tokenId, {
         value: ethers.utils.parseEther(price)
